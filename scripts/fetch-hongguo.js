@@ -17,12 +17,14 @@ const __dirname = path.dirname(__filename);
 const CONFIG_PATH = path.join(__dirname, '../config.json');
 
 // 读取 API Key
-let API_KEY = '';
-try {
-  const cfg = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf-8'));
-  API_KEY = cfg['52api_key'] || '';
-} catch {
-  console.error('警告: 无法读取 config.json，红果短剧功能将不可用。');
+let API_KEY = process.env.API_52_KEY || '';
+if (!API_KEY) {
+  try {
+    const cfg = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf-8'));
+    API_KEY = cfg['52api_key'] || '';
+  } catch {
+    console.error('警告: 无法读取 config.json，红果短剧功能将不可用。');
+  }
 }
 
 const API_BASE = 'https://www.52api.cn/api/hg_top';
