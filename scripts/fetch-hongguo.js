@@ -27,7 +27,7 @@ if (!API_KEY) {
   }
 }
 
-const API_BASE = 'https://www.52api.cn/api/hg_top';
+const API_BASE = 'https://www.52api.cn/api/hg_new_top';
 
 // 解析命令行参数
 function parseArgs() {
